@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Leave Management</title>
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* Search Bar */
+    #searchBar {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    #search {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-data {
+      text-align: center;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Employee Leave Management</h1>
+
+  <!-- Search Bar -->
+  <div id="searchBar">
+    <input type="text" id="search" placeholder="Search Employee by Name or Department">
+    <button onclick="submitLeave()">Submit Leave Request</button>
+  </div>
+
+  <!-- Employee Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Department</th>
+        <th>Leave Balance</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTable">
+      <tr>
+        <td class="employeeName">John Doe</td>
+        <td class="department">HR</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td class="employeeName">Jane Smith</td>
+        <td class="department">IT</td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <td class="employeeName">Michael Johnson</td>
+        <td class="department">Finance</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- JavaScript -->
+  <script>
+    // Filter Employee List
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', filterEmployees);
+
+    function filterEmployees() {
+      const filter = searchInput.value.toLowerCase();
+      const rows = document.querySelectorAll('#employeeTable tr');
+      
+      rows.forEach(row => {
+        const name = row.querySelector('.employeeName').innerText.toLowerCase();
+        const department = row.querySelector('.department').innerText.toLowerCase();
+        row.style.display = (name.includes(filter) || department.includes(filter)) ? '' : 'none';
+      });
+    }
+
+    // Redirect to Leave Request Form
+    function submitLeave() {
+      alert("Redirecting to Leave Request Form...");
+      window.location.href = "leave_request_form.html"; // Change to your form's URL
+    }
+  </script>
+</body>
+</html>
